@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class SearchBarService {
-  searchTerm;
-  constructor() { }
+  private searchTermSource = new Subject<string>();
+  searchTerm$ = this.searchTermSource.asObservable();
+  data;
+  constructor(private http: Http) { }
 
-  onSearch(searchTerm) {
-    this.searchTerm = searchTerm;
-    console.log(this.searchTerm);
+  onSearch(term) {
+    this.searchTermSource.next(term);
   }
-
-  getSearch() {
-    console.log(this.searchTerm);
-    return this.searchTerm;
-  }
-
 }
