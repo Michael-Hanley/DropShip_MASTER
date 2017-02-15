@@ -1,18 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import {Subject} from 'rxjs/Subject';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class SearchBarService {
-  //set the variable to be the source string
   private searchTermSource = new Subject<string>();
-  //set your stream variable to watch for changes to the source
+  searchTerm;
   searchTerm$ = this.searchTermSource.asObservable();
-  data;
-  constructor(private http: Http) { }
 
-  onSearch(term) {
-    //push change to source
-    this.searchTermSource.next(term);
+  constructor(private router: Router) { }
+
+  onSearch(searchTerm) {
+    this.showItemPage();
+    this.searchTermSource.next(searchTerm);
+    console.log(this.searchTerm);
   }
+  showItemPage() {
+    this.router.navigate(['']);
+  }
+
+  getSearch() {
+    console.log(this.searchTerm);
+    return this.searchTerm;
+  }
+
 }
