@@ -8,8 +8,11 @@ import {SearchBarService} from '../search-bar.service';
 })
 export class ItemDisplayComponent implements OnInit {
   items;
+  term;
   constructor(private searchBarService: SearchBarService) {
-    this.items = this.searchBarService.searchTerm$;
+    this.searchBarService.getData(this.term)
+      .subscribe(res => this.items = res);
+      console.log(this.items);
   }
 
   ngOnInit() {
