@@ -26,6 +26,7 @@ export class SearchBarService {
   }
   getData(term): Observable<any[]> {
       this.url = 'http://localhost:3000/api/product';
-      return this.http.get(this.url).map(res => res.json());
+      return this.http.get(this.url)
+        .map(res => res.json());
     }
 }

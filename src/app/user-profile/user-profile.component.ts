@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+var dialog = document.querySelector('dialog');
 
 @Component({
   selector: 'app-user-profile',
@@ -8,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class UserProfileComponent implements OnInit {
 
   constructor() { }
+
+  onShowModal() {
+  }
 
   ngOnInit() {
   }
